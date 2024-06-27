@@ -44,3 +44,8 @@ print(paste("The word has", nchar(answer), "letters."))
 print(paste("To win the game, you must successfully guess the word within 6 tries.",
       "For each try, you can guess a letter or a word.", 
       "If you guess wrong, you will lose an attempt. Let's start guessing!"))
+
+num_tries <- 6
+while (num_tries > 0) {
+  print(paste("You have", num_tries, "tries left."))
+}
