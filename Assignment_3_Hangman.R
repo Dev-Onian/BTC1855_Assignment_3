@@ -32,3 +32,8 @@
 #'    Tell the letter input is incorrect
 #'    Subtract 1 from number of tries
 #' Step 9: Print a message saying "Game Over"
+
+# Read list of words and save it to a variable for use later
+words_list <- read.delim("word_list.txt", header = FALSE)
+
+#
