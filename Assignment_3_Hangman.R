@@ -51,8 +51,10 @@ while (num_tries > 0) {
   guess_type <- readline(prompt = "Type `1` if you want to guess a letter and type `2` if you want to guess a word. ")
   if (guess_type == 1){
     print("You are guessing a letter.")
+    guess <- readline(prompt = "Please enter your guess: ")
   }else{
     print("You are guessing a word.")
+    guess <- readline(prompt = "Please enter your guess: ")
   }
   # num_tries <- num_tries - 1
 }
