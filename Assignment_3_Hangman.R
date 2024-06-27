@@ -36,4 +36,5 @@
 # Read list of words and save it to a variable for use later
 words_list <- read.delim("word_list.txt", header = FALSE)
 
-#
+# Choose a random word from the list that the users would be guessing
+answer <- sample(words_list[[1]], size = 1)
