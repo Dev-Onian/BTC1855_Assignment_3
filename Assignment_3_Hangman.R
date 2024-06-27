@@ -48,4 +48,11 @@ print(paste("To win the game, you must successfully guess the word within 6 trie
 num_tries <- 6
 while (num_tries > 0) {
   print(paste("You have", num_tries, "tries left."))
+  guess_type <- readline(prompt = "Type `1` if you want to guess a letter and type `2` if you want to guess a word. ")
+  if (guess_type == 1){
+    print("You are guessing a letter.")
+  }else{
+    print("You are guessing a word.")
+  }
+  # num_tries <- num_tries - 1
 }
