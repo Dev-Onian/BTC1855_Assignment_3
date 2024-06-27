@@ -41,9 +41,8 @@ answer <- sample(words_list[[1]], size = 1)
 
 # Inform the users on how many letters there are and the rules of the game.
 print(paste("The word has", nchar(answer), "letters."))
-print(paste("To win the game, you must successfully guess the word within 6 tries.",
-      "For each try, you can guess a letter or a word.", 
-      "If you guess wrong, you will lose an attempt. Let's start guessing!"))
+rules <- "To win the game, you must successfully guess the word within 6 tries.\nFor each try, you can guess a letter or a word.\nIf you guess wrong, you will lose an attempt. Let's start guessing!"
+cat(rules)
 
 num_tries <- 6
 while (num_tries > 0) {
