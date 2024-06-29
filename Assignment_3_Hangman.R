@@ -39,6 +39,32 @@ guess_display <- function(x) {
   paste(replicate(nchar(x), "ˍ"), collapse = "")
 }
 
+#' Function that updates the visual display of progress for user as they guess
+#' new letters. Takes in the guessed letter, the current display, and the 
+#' secret word.
+update_display <- function(guessed_letter, guess_display, secret_word) {
+  #' Check if the guessed letter is found in the secret word
+  if (grepl(guessed_letter, secret_word)) {
+    #' Informs the user that the guessed letter is correct (since it is found
+    #' in the secret word)
+    print(paste(guessed_letter, "is correct! :)"))
+    #' Find all position of all occurrences of the guessed letter in the secret
+    #' word
+    positions <- which(strsplit(secret_word, "")[[1]] == guessed_letter)
+    #' Update the current display to reveal all locations of the guessed letter
+    for (i in positions) {
+      guess_display <- paste0(substr(guess_display, 1, i - 1), guessed_letter, 
+                              substr(guess_display, i + 1, nchar(guess_display)))
+    }
+  }else{
+    #' Informs the user that the guessed letter is incorrect (since it is not
+    #' found in the secret word)
+    print(paste(guessed_letter, "is incorrect! :("))
+  }
+  #' Print the updated guess display after each guess attempt
+  print(guess_display)
+}
+
 # Read list of words and save it to a variable for use later
 words_list <- read.delim("word_list.txt", header = FALSE)
 
