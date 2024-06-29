@@ -6,7 +6,7 @@
 
 # Plan
 #' Step 1: Prepare a text file of words for hangman and save to project directory
-#' Step 2: Read the file and store it as a list to a variable.
+#' Step 2: Read the file and store it as a list to a variable
 #' Step 3: Choose a random word from the list
 #' Step 4: Print a message to inform the user on the length of the word
 #' Step 5: Print out the rules of the game (e.g., the number of tries allowed,
@@ -33,6 +33,12 @@
 #'    Subtract 1 from number of tries
 #' Step 9: Print a message saying "Game Over"
 
+# Function creates a string of underscores based on the number of characters
+# in the secret word `x`
+guess_display <- function(x) {
+  paste(replicate(nchar(x), "ˍ"), collapse = "")
+}
+
 # Read list of words and save it to a variable for use later
 words_list <- read.delim("word_list.txt", header = FALSE)
 
@@ -51,9 +57,10 @@ while (num_tries > 0) {
   if (guess_type == 1){
     print("You are guessing a letter.")
     guess <- readline(prompt = "Please enter your guess: ")
+    num_tries <- num_tries - 1
   }else{
     print("You are guessing a word.")
     guess <- readline(prompt = "Please enter your guess: ")
+    num_tries <- num_tries - 1
   }
-  # num_tries <- num_tries - 1
 }
