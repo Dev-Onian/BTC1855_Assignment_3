@@ -87,13 +87,20 @@ while (num_tries > 0) {
   #' Ensures the user inputs either a 1 or 2. If user inputs none of these two
   #' options, prompt the user again.
   while (guess_type != 1 && guess_type != 2){
-    cat("Invalid input. Please try again./n")
+    cat("Invalid input. Please try again.")
     guess_type <- readline(prompt = "Type `1` if you want to guess a letter and type `2` if you want to guess a word. ")
   }
   
   if (guess_type == 1){
     print("You are guessing a letter.")
     guess <- readline(prompt = "Please enter your guess: ")
+    
+    #' Check if the user input for guess is a single letter
+    while(!grepl("[a-zA-Z]", guess) || nchar(guess) != 1) {
+      print("Invalid input. Please enter a single letter.")
+      guess <- readline(prompt = "Please enter your guess: ")
+    }
+    
     #' Check if the guessed letter is in the secret word. Let the user know if 
     #' it is correct or incorrect.
     if (grepl(guess, answer)){
@@ -133,7 +140,7 @@ while (num_tries > 0) {
 
 #' Output game outcome message based on if the user guessed the word or not
 if (num_tries == 0 && grepl("ˍ", display)) {
-  print(paste("GAME OVER: You have used up all your tries.", secret_word, 
+  print(paste("GAME OVER: You have used up all your tries.", answer, 
               "was the answer. Better luck next time!"))
 } else {
   print(paste("YOU WON! Congratulations! :)"))
