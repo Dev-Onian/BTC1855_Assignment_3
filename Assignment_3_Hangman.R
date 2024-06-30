@@ -100,7 +100,6 @@ print(paste("The word has", nchar(answer), "letters."))
 
 # Generate initial display based on the secret word
 display <- guess_display(answer)
-
 # Print the initial display to show the user
 print(display)
 
@@ -122,5 +121,8 @@ while (num_tries > 0) {
   }else{
     print("You are guessing a word.")
     guess <- readline(prompt = "Please enter your guess: ")
+    #' Check if the guessed word is in the secret word. Let the user know if it
+    #' is correct or incorrect.
+    check_word(guess, answer)
   }
 }
