@@ -101,6 +101,10 @@ while (num_tries > 0) {
       guess <- readline(prompt = "Please enter your guess: ")
     }
     
+    # Convert string to lowercase to ensure match even if user input was 
+    # uppercase
+    guess <- tolower(guess)
+    
     #' Check if the guessed letter is in the secret word. Let the user know if 
     #' it is correct or incorrect.
     if (grepl(guess, answer)){
@@ -128,7 +132,11 @@ while (num_tries > 0) {
       print("Invalid input. Please enter a single word composed of only letters.")
       guess <- readline(prompt = "Please enter your guess: ")
     }
-        
+    
+    # Convert string to lowercase to ensure match even if user input was 
+    # uppercase
+    guess <- tolower(guess)
+    
     #' Check if the guessed word is in the secret word. Let the user know if it
     #' is correct or incorrect.
     if (guess == answer) {
@@ -140,6 +148,8 @@ while (num_tries > 0) {
     } else {
       #' Informs the user that the guessed word is incorrect
       print(paste(guess, "is the wrong answer! :c"))
+      # Display the current progress
+      print(display)
       # User has used up a try
       num_tries <- num_tries - 1
     }
