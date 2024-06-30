@@ -119,4 +119,12 @@ while (num_tries > 0) {
       num_tries <- num_tries - 1
     }
   }
-  }
+}
+
+#' Output game outcome message based on if the user guessed the word or not
+if (num_tries == 0 && grepl("ˍ", display)) {
+  print(paste("GAME OVER: You have used up all your tries.", secret_word, 
+              "was the answer. Better luck next time!"))
+} else {
+  print(paste("YOU WON! Congratulations! :)"))
+}
