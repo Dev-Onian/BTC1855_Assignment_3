@@ -58,7 +58,13 @@ update_display <- function(guessed_letter, guess_display, secret_word) {
   #' Print the updated guess display after each guess attempt
   print(guess_display)
 }
-  
+
+hangmen <- c("____\n|   |\n|   O\n|  /|\\\n|  / \\\n", 
+             " ____\n|   |\n|   O\n|  /|\\\n|  /\n", 
+             " ____\n|   |\n|   O\n|  /|\\\n|\n", " ____\n|   |\n|   O\n|  /|\n|\n",
+             " ____\n|   |\n|   O\n|   |\n|\n", " ____\n|   |\n|   O\n|\n|\n",
+             " ____\n|   |\n|\n|\n|\n")
+
 # Read list of words and save it to a variable for use later
 words_list <- read.delim("word_list.txt", header = FALSE)
 
@@ -114,15 +120,17 @@ while (num_tries > 0) {
       #' in the secret word)
       print(paste(guess, "is correct! :)"))
       #' Update the visual display and print it.
+      cat(hangmen[num_tries + 1])
       display <- update_display(guess, display, answer)
     } else {
       #' Informs the user that the guessed letter is incorrect (since it is not
       #' found in the secret word)
       print(paste(guess, "is incorrect! :("))
-      # Show current progress with visual display
-      print(display)
       # User guessed incorrectly - lost a try
       num_tries <- num_tries - 1
+      # Show current progress with visual display
+      cat(hangmen[num_tries + 1])
+      print(display)
     }
   }else{
     print("You are guessing a word.")
@@ -150,10 +158,11 @@ while (num_tries > 0) {
     } else {
       #' Informs the user that the guessed word is incorrect
       print(paste(guess, "is the wrong answer! :c"))
-      # Display the current progress
-      print(display)
       # User has used up a try
       num_tries <- num_tries - 1
+      # Display the current progress
+      cat(hangmen[num_tries + 1])
+      print(display)
     }
   }
 }
@@ -165,3 +174,11 @@ if (num_tries == 0 && grepl("ˍ", display)) {
 } else {
   print(paste("YOU WON! Congratulations! :)"))
 }
+
+# cat(" ____\n|   |\n|\n|\n|")
+# # cat(" ____\n|   |\n|   O\n|\n|")
+# # cat(" ____\n|   |\n|   O\n|   |\n|")
+# # cat(" ____\n|   |\n|   O\n|  /|\n|")
+# # cat(" ____\n|   |\n|   O\n|  /|\\\n|")
+# # cat(" ____\n|   |\n|   O\n|  /|\\\n|  /")
+# cat("____\n|   |\n|   O\n|  /|\\\n|  / \\")
