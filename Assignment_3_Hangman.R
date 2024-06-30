@@ -46,7 +46,7 @@ guess_display <- function(x) {
 #' Function that updates the visual display of progress for user as they guess
 #' new letters. Takes in the guessed letter, the current display, and the 
 #' secret word.
-check_guess <- function(guessed_letter, guess_display, secret_word) {
+check_letter <- function(guessed_letter, guess_display, secret_word) {
   #' Check if the guessed letter is found in the secret word
   if (grepl(guessed_letter, secret_word)) {
     #' Informs the user that the guessed letter is correct (since it is found
@@ -68,6 +68,23 @@ check_guess <- function(guessed_letter, guess_display, secret_word) {
   #' Print the updated guess display after each guess attempt
   print(guess_display)
 }
+
+#' Function that checks if the guessed word is the same as the secret word. If
+#' it is correct, inform the user. If it is not, inform the user.
+check_word <- function(guessed_word, secret_word){
+  if (guessed_word == secret_word) {
+    #' Informs the user that the guessed word is correct
+    print(paste(guessed_word, "is the correct answer! :D"))
+    # User got the correct answer. No remaining tries needed.
+    num_tries <- 0
+  } else {
+    #' Informs the user that the guessed word is incorrect
+    print(paste(guessed_word, "is the wrong answer! :c"))
+    # User has used up a try
+    num_tries <- num_tries - 1
+  }
+}
+  
 
 # Read list of words and save it to a variable for use later
 words_list <- read.delim("word_list.txt", header = FALSE)
@@ -99,13 +116,11 @@ while (num_tries > 0) {
     guess <- readline(prompt = "Please enter your guess: ")
     #' Check if the guessed letter is in the secret word. Let the user know if 
     #' it is correct or incorrect. Update the visual display and print it.
-    display <- check_guess(guess, display, answer)
+    display <- check_letter(guess, display, answer)
     # User has used up a try
     num_tries <- num_tries - 1
   }else{
     print("You are guessing a word.")
     guess <- readline(prompt = "Please enter your guess: ")
-    # User has used up a try
-    num_tries <- num_tries - 1
   }
 }
