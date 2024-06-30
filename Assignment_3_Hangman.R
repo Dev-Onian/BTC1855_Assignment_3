@@ -31,7 +31,11 @@
 #'  if FALSE:
 #'    Tell the letter input is incorrect
 #'    Subtract 1 from number of tries
-#' Step 9: Print a message saying "Game Over"
+#' Step 9: Ending message based on game outcome:
+#'  if user figures out the word:
+#'    Print a message congratulating winner and letting them know they won
+#'  if user does not figure out the word within limit:
+#'    Print a message letting them know they lost
 
 # Function creates a string of underscores based on the number of characters
 # in the secret word `x`
@@ -42,7 +46,7 @@ guess_display <- function(x) {
 #' Function that updates the visual display of progress for user as they guess
 #' new letters. Takes in the guessed letter, the current display, and the 
 #' secret word.
-update_display <- function(guessed_letter, guess_display, secret_word) {
+check_guess <- function(guessed_letter, guess_display, secret_word) {
   #' Check if the guessed letter is found in the secret word
   if (grepl(guessed_letter, secret_word)) {
     #' Informs the user that the guessed letter is correct (since it is found
@@ -83,17 +87,25 @@ display <- guess_display(answer)
 # Print the initial display to show the user
 print(display)
 
+# Set the total number of tries that the user has
 num_tries <- 6
 while (num_tries > 0) {
+  # Remind the user of how many tries they have left
   print(paste("You have", num_tries, "tries left."))
+  # Let the user decide if they want to guess a letter or word
   guess_type <- readline(prompt = "Type `1` if you want to guess a letter and type `2` if you want to guess a word. ")
   if (guess_type == 1){
     print("You are guessing a letter.")
     guess <- readline(prompt = "Please enter your guess: ")
+    #' Check if the guessed letter is in the secret word. Let the user know if 
+    #' it is correct or incorrect. Update the visual display and print it.
+    display <- check_guess(guess, display, answer)
+    # User has used up a try
     num_tries <- num_tries - 1
   }else{
     print("You are guessing a word.")
     guess <- readline(prompt = "Please enter your guess: ")
+    # User has used up a try
     num_tries <- num_tries - 1
   }
 }
