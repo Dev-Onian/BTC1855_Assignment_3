@@ -71,10 +71,17 @@ words_list <- read.delim("word_list.txt", header = FALSE)
 # Choose a random word from the list that the users would be guessing
 answer <- sample(words_list[[1]], size = 1)
 
-# Inform the users on how many letters there are and the rules of the game.
-print(paste("The word has", nchar(answer), "letters."))
+# Inform the users on the rules of the game and how many letters there are.
 rules <- "To win the game, you must successfully guess the word within 6 tries.\nFor each try, you can guess a letter or a word.\nIf you guess wrong, you will lose an attempt. Let's start guessing!"
 cat(rules)
+
+print(paste("The word has", nchar(answer), "letters."))
+
+# Generate initial display based on the secret word
+display <- guess_display(answer)
+
+# Print the initial display to show the user
+print(display)
 
 num_tries <- 6
 while (num_tries > 0) {
