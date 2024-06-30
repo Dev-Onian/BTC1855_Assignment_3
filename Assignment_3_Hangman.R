@@ -83,6 +83,14 @@ while (num_tries > 0) {
   print(paste("You have", num_tries, "tries left."))
   # Let the user decide if they want to guess a letter or word
   guess_type <- readline(prompt = "Type `1` if you want to guess a letter and type `2` if you want to guess a word. ")
+  
+  #' Ensures the user inputs either a 1 or 2. If user inputs none of these two
+  #' options, prompt the user again.
+  while (guess_type != 1 && guess_type != 2){
+    cat("Invalid input. Please try again./n")
+    guess_type <- readline(prompt = "Type `1` if you want to guess a letter and type `2` if you want to guess a word. ")
+  }
+  
   if (guess_type == 1){
     print("You are guessing a letter.")
     guess <- readline(prompt = "Please enter your guess: ")
