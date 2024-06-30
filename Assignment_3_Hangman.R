@@ -46,7 +46,7 @@ guess_display <- function(x) {
 #' Function that updates the visual display of progress for user as they guess
 #' new letters. Takes in the guessed letter, the current display, and the 
 #' secret word.
-check_letter <- function(guessed_letter, guess_display, secret_word) {
+check_letter <- function(guessed_letter, guess_display, secret_word, num_tries) {
   #' Check if the guessed letter is found in the secret word
   if (grepl(guessed_letter, secret_word)) {
     #' Informs the user that the guessed letter is correct (since it is found
@@ -64,6 +64,7 @@ check_letter <- function(guessed_letter, guess_display, secret_word) {
     #' Informs the user that the guessed letter is incorrect (since it is not
     #' found in the secret word)
     print(paste(guessed_letter, "is incorrect! :("))
+    num_tries <- num_tries - 1
   }
   #' Print the updated guess display after each guess attempt
   print(guess_display)
@@ -97,10 +98,20 @@ while (num_tries > 0) {
     print("You are guessing a letter.")
     guess <- readline(prompt = "Please enter your guess: ")
     #' Check if the guessed letter is in the secret word. Let the user know if 
-    #' it is correct or incorrect. Update the visual display and print it.
-    display <- check_letter(guess, display, answer)
-    # User has used up a try
-    num_tries <- num_tries - 1
+    #' it is correct or incorrect.
+    if (grepl(guess, answer)){
+      #' Informs the user that the guessed letter is correct (since it is found
+      #' in the secret word)
+      print(paste(guess, "is correct! :)"))
+    } else {
+      #' Informs the user that the guessed letter is incorrect (since it is not
+      #' found in the secret word)
+      print(paste(guess, "is incorrect! :("))
+      # User guessed incorrectly - lost a try
+      num_tries <- num_tries - 1
+    }
+    #' Update the visual display and print it.
+    display <- check_letter(guess, display, answer, num_tries)
   }else{
     print("You are guessing a word.")
     guess <- readline(prompt = "Please enter your guess: ")
