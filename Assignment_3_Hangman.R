@@ -66,8 +66,10 @@ words_list <- read.delim("word_list.txt", header = FALSE)
 answer <- sample(words_list[[1]], size = 1)
 
 # Inform the users on the rules of the game and how many letters there are.
-rules <- "To win the game, you must successfully guess the word within 6 tries.\nFor each try, you can guess a letter or a word.\nIf you guess wrong, you will lose an attempt. Let's start guessing!"
-cat(rules)
+rule_1 <- "To win the game, you must successfully guess the word before the number of lives run out."
+rule_2 <- "For each try, you can guess a letter or a word."
+rule_3 <- "If you guess wrong, you will lose a life.\nLet's start guessing!\n"
+cat(rule_1, rule_2, rule_3, sep = "\n")
 
 print(paste("The word has", nchar(answer), "letters."))
 
@@ -76,11 +78,11 @@ display <- guess_display(answer)
 # Print the initial display to show the user
 print(display)
 
-# Set the total number of tries that the user has
+# Set the total number of lives that the user has
 num_tries <- 6
 while (num_tries > 0) {
-  # Remind the user of how many tries they have left
-  print(paste("You have", num_tries, "tries left."))
+  # Remind the user of how many lives they have left
+  print(paste("You have", num_tries, "lives left."))
   # Let the user decide if they want to guess a letter or word
   guess_type <- readline(prompt = "Type `1` if you want to guess a letter and type `2` if you want to guess a word. ")
   
