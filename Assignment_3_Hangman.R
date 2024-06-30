@@ -68,23 +68,6 @@ check_letter <- function(guessed_letter, guess_display, secret_word) {
   #' Print the updated guess display after each guess attempt
   print(guess_display)
 }
-
-#' Function that checks if the guessed word is the same as the secret word. If
-#' it is correct, inform the user. If it is not, inform the user.
-check_word <- function(guessed_word, secret_word, guess_display, tries){
-  if (guessed_word == secret_word) {
-    #' Informs the user that the guessed word is correct
-    print(paste(guessed_word, "is the correct answer! :D"))
-    # User got the correct answer. No remaining tries needed.
-    guess_display <- secret_word
-    tries <- 0
-  } else {
-    #' Informs the user that the guessed word is incorrect
-    print(paste(guessed_word, "is the wrong answer! :c"))
-    # User has used up a try
-    tries <- tries - 1
-  }
-}
   
 # Read list of words and save it to a variable for use later
 words_list <- read.delim("word_list.txt", header = FALSE)
@@ -123,7 +106,6 @@ while (num_tries > 0) {
     guess <- readline(prompt = "Please enter your guess: ")
     #' Check if the guessed word is in the secret word. Let the user know if it
     #' is correct or incorrect.
-    
     if (guess == answer) {
       #' Informs the user that the guessed word is correct
       print(paste(guess, "is the correct answer! :D"))
