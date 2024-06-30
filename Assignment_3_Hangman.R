@@ -46,25 +46,14 @@ guess_display <- function(x) {
 #' Function that updates the visual display of progress for user as they guess
 #' new letters. Takes in the guessed letter, the current display, and the 
 #' secret word.
-check_letter <- function(guessed_letter, guess_display, secret_word, num_tries) {
-  #' Check if the guessed letter is found in the secret word
-  if (grepl(guessed_letter, secret_word)) {
-    #' Informs the user that the guessed letter is correct (since it is found
-    #' in the secret word)
-    print(paste(guessed_letter, "is correct! :)"))
-    #' Find all position of all occurrences of the guessed letter in the secret
-    #' word
-    positions <- which(strsplit(secret_word, "")[[1]] == guessed_letter)
-    #' Update the current display to reveal all locations of the guessed letter
-    for (i in positions) {
-      guess_display <- paste0(substr(guess_display, 1, i - 1), guessed_letter, 
+update_display <- function(guessed_letter, guess_display, secret_word) {
+  #' Find all position of all occurrences of the guessed letter in the secret
+  #' word
+  positions <- which(strsplit(secret_word, "")[[1]] == guessed_letter)
+  #' Update the current display to reveal all locations of the guessed letter
+  for (i in positions) {
+  guess_display <- paste0(substr(guess_display, 1, i - 1), guessed_letter, 
                               substr(guess_display, i + 1, nchar(guess_display)))
-    }
-  }else{
-    #' Informs the user that the guessed letter is incorrect (since it is not
-    #' found in the secret word)
-    print(paste(guessed_letter, "is incorrect! :("))
-    num_tries <- num_tries - 1
   }
   #' Print the updated guess display after each guess attempt
   print(guess_display)
@@ -103,15 +92,17 @@ while (num_tries > 0) {
       #' Informs the user that the guessed letter is correct (since it is found
       #' in the secret word)
       print(paste(guess, "is correct! :)"))
+      #' Update the visual display and print it.
+      display <- update_display(guess, display, answer)
     } else {
       #' Informs the user that the guessed letter is incorrect (since it is not
       #' found in the secret word)
       print(paste(guess, "is incorrect! :("))
+      # Show current progress with visual display
+      print(display)
       # User guessed incorrectly - lost a try
       num_tries <- num_tries - 1
     }
-    #' Update the visual display and print it.
-    display <- check_letter(guess, display, answer, num_tries)
   }else{
     print("You are guessing a word.")
     guess <- readline(prompt = "Please enter your guess: ")
