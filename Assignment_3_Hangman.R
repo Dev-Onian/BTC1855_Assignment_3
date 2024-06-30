@@ -121,6 +121,14 @@ while (num_tries > 0) {
   }else{
     print("You are guessing a word.")
     guess <- readline(prompt = "Please enter your guess: ")
+    
+    #' Check if the user input for guess is a single word - only letters and no
+    #' spaces
+    while(grepl(" ", guess) || !grepl("^[a-zA-Z]+$", guess)) {
+      print("Invalid input. Please enter a single word composed of only letters.")
+      guess <- readline(prompt = "Please enter your guess: ")
+    }
+        
     #' Check if the guessed word is in the secret word. Let the user know if it
     #' is correct or incorrect.
     if (guess == answer) {
