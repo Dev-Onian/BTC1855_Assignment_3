@@ -37,6 +37,10 @@
 #'  if user does not figure out the word within limit:
 #'    Print a message letting them know they lost
 
+# Assign the directory from which the text file is found on your computer
+# and set it as the working directory.
+setwd("C:/Users/tpalm/Desktop/MY FILES/UofT/MBiotech/BTC1855/BTC1855_Assignment_3")
+
 # Function creates a string of underscores based on the number of characters
 # in the secret word `x`
 guess_display <- function(x) {
