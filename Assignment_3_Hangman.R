@@ -39,7 +39,7 @@
 
 # Assign the directory from which the text file is found on your computer
 # and set it as the working directory.
-setwd("C:/Users/tpalm/Desktop/MY FILES/UofT/MBiotech/BTC1855/BTC1855_Assignment_3")
+#setwd("C:/Users/tpalm/Desktop/MY FILES/UofT/MBiotech/BTC1855/BTC1855_Assignment_3")
 
 # Function creates a string of underscores based on the number of characters
 # in the secret word `x`
@@ -186,3 +186,24 @@ if (num_tries == 0 && grepl("ˍ", display)) {
 # # cat(" ____\n|   |\n|   O\n|  /|\\\n|")
 # # cat(" ____\n|   |\n|   O\n|  /|\\\n|  /")
 # cat("____\n|   |\n|   O\n|  /|\\\n|  / \\")
+
+
+#' Reviewer Comments
+#' 1. It is a bit inelegant from the user's perspective to have to input whether 
+#'    you want to input a letter or a word before entering a letter or word. A more
+#'    user-friendly setup would be for an internal check on whether or not the user
+#'    has input a letter or a word
+#' 2. It is good that the code is letter case agnostic - that no matter what case,
+#'    or combination of capitalization the user inputs for the word, the code 
+#'    does not care in terms of guesses
+#' 3. The animations are quite nice. It would be nice if there was an animation 
+#'    for whether you win or lose the game, though that is hardly necessary
+#' 4. It is unfortunate that repeated entries of an incorrect letter costs lives
+#'    while at the same time, incorrect guesses are not retained and provided for
+#'    the user
+#' 5. The code is able to handle all of the strange inputs the reviewer entered 
+#'    in attempting to produce an error. It is quite idiot proof
+#' 6. There are functions that allow for the identification of all instances of 
+#'    a character appearing within a string. The for loop within the update_display
+#'    function is unnecesary
+#'    
